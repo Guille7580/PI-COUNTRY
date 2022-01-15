@@ -19,38 +19,12 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const axios = require('axios');
-const {Country} = require('./src/db');
+const {LoadDb} = require('./src/loadDb/loadDb')
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
-
-  const countries = await axios.get('https://restcountries.com/v3/all'); 
-
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
-
-    
-      countries.data.map(async (c) => {
-			
-        try {
-          await Country.create({
-            id: c.cca3,
-            name: c.name.common,
-            imgBandera: c.flags[1] ? c.flags[1]: 'Image not found',
-            continente: c.region,
-            capital: c.capital ? c.capital[0] : "capital not found",
-            subRegion: c.subregion ? c.subregion : "subregion not found",
-            area: c.area ? c.area : 0,
-            poblacion: c.population ? c.population : 0
-          });
-          
-        } catch (error) {
-          console.log(error);
-        }
-      });
-    
- 
-  
+    LoadDb();
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
