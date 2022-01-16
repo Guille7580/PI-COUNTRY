@@ -41,7 +41,7 @@ function rootReducer  (state = initialState, action) {
       case ORD_BYACTIVITY:
        // const filterActivi = state.countries.filter((c)=>{ return c.activities.some((a)=> a.name === action.payload)})
         const allCoun = state.allcountries ;
-        const filterActivi = action.payload === 'All' ? allCoun : 
+        const filterActivi = action.payload === 'All' ? state.countries: 
         allCoun.filter( c => c.activities && c.activities.filter((a) => a.name === action.payload).length)
         return{
           ...state,

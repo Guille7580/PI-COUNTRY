@@ -4,17 +4,19 @@ import { useDispatch , useSelector } from "react-redux";
 import { getDetail} from '../../actions/index'
 import { useEffect } from "react";
 import Nav from '../Nav/Nav'
+import style from '../detallesPais/detalle.module.css'
 
 export default function Detalles (props) {
     console.log(props)
     const {id} = useParams();
     const dispatch = useDispatch()
     
-    const myCountry = useSelector ((state) => state.countryDetail)
     
     useEffect(() => {
         dispatch(getDetail(id))
     },[dispatch])
+
+    const myCountry = useSelector ((state) => state.countryDetail)
 
     
     console.log(myCountry)
@@ -27,7 +29,7 @@ export default function Detalles (props) {
             </Link> */}
             {
                myCountry   ?
-               <div>
+               <div >
                    <h1>Pais: {myCountry.name}</h1>
                    <img src={myCountry.flagimg} alt="img not found" width="300px" height="250px" />
                    <h3>ID Pais: {myCountry.id}</h3>
