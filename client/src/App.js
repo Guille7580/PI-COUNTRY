@@ -7,6 +7,7 @@ import Detalles from './components/detallesPais/detalle';
 import Acerca from './components/acerca/acerca'
 
 function App() {
+  
 
 
   return (

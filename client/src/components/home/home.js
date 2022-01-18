@@ -86,6 +86,7 @@ export default function Home () {
             <SearchBar/>
             <button onClick={e=>{handleClick(e)}}>Recargar Paises</button>
             <div>
+                
                 <label> Continente: </label>
                 <select onChange={handleFilterCont} >
                     <option value='All'>Todos</option>
@@ -96,19 +97,7 @@ export default function Home () {
                     <option value='Oceania'>Oceania</option>
                     <option value='Antarctic'>Antartida</option>
                 </select>
-                <label> Poblacion: </label>
-                <select onChange={handleorderPopulation}>
-                    <option value='nada'>Ordenar</option> 
-                    <option value='asce'>Menor a Mayor</option>
-                    <option value='desce'>Mayor a Menor</option>
-                </select>
-                <label> Nombre: </label>
-                <select onChange={handleorderByName}>
-                     <option value='nada'>Eliga un Orden</option> 
-                    <option value='asc'>Ascendente</option>
-                    <option value='desc'>Descendente</option>
-                </select>
-                <label>  Actividades: </label>
+                <label> Actividades Turisticas: </label>
                 <select  onChange={handleFilterActivite} >
                     <option value='All'>Actividad</option>
                         
@@ -117,11 +106,19 @@ export default function Home () {
                     )}
             
                 </select>
-                    {/* {errors.countryID && (
-                       <p className = 'error'>{errors.countryID}</p>
-                   )} */}
+                <label> Poblacion: </label>
+                <select onChange={handleorderPopulation}>
+                    <option value='nada'>Ordenar</option> 
+                    <option value='asce'>Menor a Mayor</option>
+                    <option value='desce'>Mayor a Menor</option>
+                </select>
+                <label> Nombre Pais: </label>
+                <select onChange={handleorderByName}>
+                     <option value='nada'>Eliga un Orden</option> 
+                    <option value='asc'>Ascendente</option>
+                    <option value='desc'>Descendente</option>
+                </select>
                 
-                      
                 <Paginado
                    countriesPerPage={countriesPerPage}
                    allCountries={allCountries.length}

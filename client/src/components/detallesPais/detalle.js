@@ -4,7 +4,7 @@ import { useDispatch , useSelector } from "react-redux";
 import { getDetail} from '../../actions/index'
 import { useEffect } from "react";
 import Nav from '../Nav/Nav'
-import style from '../detallesPais/detalle.module.css'
+//import style from '../detallesPais/detalle.module.css'
 
 export default function Detalles (props) {
     console.log(props)

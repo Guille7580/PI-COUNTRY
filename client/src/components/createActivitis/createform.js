@@ -1,7 +1,7 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import { useSelector , useDispatch} from 'react-redux';
-import {useNavigate ,Link} from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import {postCharacter} from '../../actions/index'
 import { getCountries } from "../../actions";
 import Nav from '../Nav/Nav'
@@ -14,7 +14,7 @@ function validate (activity) {
         errors.name = 'Se requiere un nombre de Actividad'} 
     else if (!nameTest.test(activity.name.trim())) {
             errors.name = 'No se permiten numeros , solo letras de 3 a 80 caracteres'}     
-    if (!activity.difficulty) {
+    else if (!activity.difficulty) {
         errors.difficulty = 'Se requiere un nivel de Dificultad '}
     else if (!activity.duration) {
         errors.duration = 'Se requiere el tiempo de la Actividad'} 
@@ -117,11 +117,12 @@ export default function Createform () {
         
         <div> 
             <Nav />
-            <Link to='/home'>
+            {/* <Link to='/home'>
                 <button>Volver</button>
-            </Link>
+            </Link> */}
             <h1>Crear Actividad</h1>
             <form onSubmit={handleSubmit}>
+              <div> 
                 <div>
                    <label>Nombre de Actividad : </label>
                    <input type='text' 
@@ -227,13 +228,13 @@ export default function Createform () {
                         <p> Por favor complete los campos faltantes </p> :
                         <button type='submit' className='boton'> Crear Actividad </button>}
                 </div>
-                
+              </div>  
             </form>
             {
             activity.countryID.map(el => 
-                <div className="divocc" >
-                    <p>{el}</p>
-                    <button className="botonx" onClick={() => handleDelete(el)}>x</button>
+                <div  >
+                    <h3>{el}</h3>
+                    <button  onClick={() => handleDelete(el)}>x</button>
                 </div>
             )}
            

@@ -32,8 +32,8 @@ function rootReducer  (state = initialState, action) {
           countryActivity: action.payload,
         }  
       case ORD_CONTINENT:
-        const allCountrie = state.allcountries
-        const statusFilterCont = action.payload === 'All' ? allCountrie : allCountrie?.filter(el => el.region === action.payload)
+         const allCountrie = state.allcountries
+         const statusFilterCont = action.payload === 'All' ? allCountrie : allCountrie?.filter(el => el.region === action.payload)
         return{
           ...state,
           countries : statusFilterCont
@@ -50,17 +50,17 @@ function rootReducer  (state = initialState, action) {
       case ORD_BYNAME:
         var sorted 
             if(action.payload === 'nada'){
-                sorted = state.countries
+                sorted = state.allcountries
             }
             if (action.payload === 'asc'){
-                sorted = state.countries.sort((a,b) => {
+                sorted = state.allcountries.sort((a,b) => {
                     if (a.name > b.name) return 1;
                     if(a.name < b.name) return -1;
                     return 0;
                 })
             }
             if(action.payload === 'desc'){
-                sorted = state.countries.sort((a,b) => {
+                sorted = state.allcountries.sort((a,b) => {
                     if (a.name > b.name) return -1;
                     if(a.name < b.name)return 1;
                     return 0;
@@ -83,17 +83,17 @@ function rootReducer  (state = initialState, action) {
       case ORD_BYPOPUL:
         var sortedad 
             if(action.payload === 'nada'){
-                sortedad = state.countries
+                sortedad = state.allcountries
             }
             if (action.payload === 'asce'){
-                sortedad = state.countries.sort((a,b) => {
+                sortedad = state.allcountries.sort((a,b) => {
                     if (a.population > b.population) return 1;
                     if(a.population < b.population) return -1;
                     return 0;
                 })
             }
             if(action.payload === 'desce'){
-                sortedad  = state.countries.sort((a,b) => {
+                sortedad  = state.allcountries.sort((a,b) => {
                     if (a.population > b.population) return -1;
                     if(a.population < b.population)return 1;
                     return 0;

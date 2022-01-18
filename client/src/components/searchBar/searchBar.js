@@ -29,7 +29,6 @@ export default function SearchBar () {
               placeholder="Buscar..."
               onChange={(e) => handleInputChange(e)}
               value= {name}
-              placeholder="Nombre del país"
            />
            <button type='submit' onClick={(e) => handleSubmit(e)}>Buscar</button>
 
