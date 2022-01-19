@@ -7,11 +7,12 @@ test('renders ok', () => {
   screen.debug(); 
 });
 
-test('renders without crashing', () => {
+test('renders learn react link', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/Access/i);
-  expect(linkElement).toBeInTheDocument(); 
-});
+  const linkElement = getByText(/BIENVENIDO/i);
+  expect(linkElement).toBeInTheDocument();
+ });
+
 
 test('renders custom element', () => {
   render(<div data-testid="custom-element" />);
