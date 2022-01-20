@@ -2,6 +2,7 @@
 const { Country, Activity } = require("../db");
 
 async function newAct(req, res) {
+  try{
   const { name, difficulty, duration, season, countryID } = req.body;
 
   const valdidateact = await Activity.findOne({
@@ -27,10 +28,10 @@ async function newAct(req, res) {
 
     return res.send(resact);
   }
-
+  
   const countrymatch = await Country.findAll({
     where: {
-      id: countryID,
+      name: countryID,
     },
   });
   // console.log(addAct)
@@ -38,7 +39,11 @@ async function newAct(req, res) {
 
   const resact = await valdidateact.addCountries(countrymatch);
 
-  res.send(resact);
+  return res.send(resact);
+
+ }catch(error){
+   console.log(error)
+ }
 }
 async function getAllActivities(req, res) {
   

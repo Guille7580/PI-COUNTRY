@@ -1,15 +1,16 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import { useSelector , useDispatch} from 'react-redux';
-import {useNavigate } from 'react-router-dom';
-import {postCharacter} from '../../actions/index'
-import { getCountries } from "../../actions";
+import {useNavigate,Link } from 'react-router-dom';
+import {postCharacter,getCountries} from '../../actions/index'
 import Nav from '../Nav/Nav'
 
 function validate (activity) {
 
     let nameTest =/^[a-zA-ZA-y\s]{3,80}$/; //solo letras de 3 a 80 caracteres
     let errors = {} ;
+   // if (CountriesAll.activities)
+
     if (!activity.name) {
         errors.name = 'Se requiere un nombre de Actividad'} 
     else if (!nameTest.test(activity.name.trim())) {
@@ -27,16 +28,16 @@ function validate (activity) {
 }    
 
 export default function Createform () {
-    
+    var x = x + 1
     const dispatch = useDispatch()
     const history = useNavigate()
     const CountriesAll = useSelector ((state)=>state.countries)
-    console.log(CountriesAll)
+    //console.log(CountriesAll)
 
     useEffect (() =>{
         dispatch(getCountries());
       },[dispatch])
-   
+    
     const [errors , setErrors] = useState ({})
     const [activity,setactivity] = useState({
         name:"",
@@ -62,26 +63,36 @@ export default function Createform () {
     
 
     const handleSelect = (e) => {
-       
-        setactivity({
-            ...activity,
-            countryID : [...activity.countryID , e.target.value]
+        if(activity.countryID.includes(e.target.value)){
+          setactivity({
+               ...activity,
+               //countryID :activity.countryID.filter(elem => elem !== e.target.value)
+               countryID :[...activity.countryID]
         })
+        }else{
+            setactivity({
+               ...activity,
+               countryID : [...activity.countryID , e.target.value]
+           })
+        }
         setErrors(validate({
             ...activity,
             countryID : e.target.value
         }));
-        console.log(activity)
+
+        // const dataArr = new Set(activity.countryID);
+        // activity.countryID = [...dataArr];
+        // console.log(activity)
     } 
 
     const handleSubmit = (e)=>{
                
         e.preventDefault();
-       
+        
         if (!activity.name || !activity.difficulty || !activity.duration || !activity.season || (activity.countryID.length < 1 )){
             alert (" rellene los campos faltantes")
         } else {
-        console.log(activity)
+        //console.log(activity)
         dispatch(postCharacter(activity))
         alert("Actividad fue creada correctamente")
         setactivity({
@@ -129,7 +140,10 @@ export default function Createform () {
                           name="name" 
                           value={activity.name} 
                           onChange={handleChange} 
-                          id="name"/>
+                          id="name"
+                        //   minLength="4"
+                        //   maxLength="20"
+                        />
                    {errors.name && (
                        <p className = 'error'>{errors.name}</p>
                    )}
@@ -137,7 +151,7 @@ export default function Createform () {
                 <div>
                    <label>Dificultad : </label>
                    <select name = 'difficulty' onChange={handleChange} >
-                      <option value=''>Selecciona la dificultad</option>
+                      <option value='' >Selecciona la dificultad</option>
                       <option value='1'>1</option>
                       <option value='2'>2</option>
                       <option value='3'>3</option>
@@ -152,7 +166,7 @@ export default function Createform () {
                 <div >
                     <label>Duracion : </label>
                     <select name='duration' onChange={handleChange}>
-                      <option value=''>Tiempo en horas</option>  
+                      <option value='' >Tiempo en horas</option>  
                       <option value={1}>1</option>
                       <option value={2}>2</option>
                       <option value={3}>3</option>
@@ -186,7 +200,7 @@ export default function Createform () {
                 <div >
                     <label>Temporada : </label>
                     <select name="season"  onChange={handleChange} >
-                      <option value=''>Selecciona la Estacion</option>  
+                      <option value='' >Selecciona la Estacion</option>  
                       <option value="Verano">Verano</option>
                       <option value="Invierno">Invierno</option>
                       <option value="Otoño">Otoño</option>
@@ -200,9 +214,11 @@ export default function Createform () {
                     <label>Paises : </label>
                     <select  onChange={handleSelect} >
                         {/* <option  value="" >Selecciona un pais</option> */}
+                       
                         {CountriesAll?.map (el =>
                             <option key={el.id} value={el.name} >{ el.name}</option>
                         )}
+                        {/* { activity.countryID.filter((val,i)=> activity.countryID.indexOf === i)} */}
             
                     </select>
                     {errors.countryID && (
@@ -218,7 +234,7 @@ export default function Createform () {
                     >
                     Reset Form
                     </button>
-                    {/* <button type="submit">Crear Actividad</button> */}
+                    
                     {
                     errors.hasOwnProperty('name') ||
                         errors.hasOwnProperty('difficulty') ||
@@ -230,9 +246,10 @@ export default function Createform () {
                 </div>
               </div>  
             </form>
+            
             {
             activity.countryID.map(el => 
-                <div  >
+                <div key={el} >
                     <h3>{el}</h3>
                     <button  onClick={() => handleDelete(el)}>x</button>
                 </div>

@@ -5,6 +5,9 @@ const { API_ALL } = process.env;
 async function LoadDb(req, res) {
   try {
     {
+      // await axios.get(API_ALL)
+      // .then((response)=>response.json)
+      // .then((data)=>console.log(data))
       const AllCountApi = await axios.get(API_ALL);
       const ModelCountries = AllCountApi.data.map((e) => {
         return {

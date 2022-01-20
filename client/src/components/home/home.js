@@ -10,6 +10,9 @@ import SearchBar from '../searchBar/searchBar';
 import Nav from '../Nav/Nav'
 
 export default function Home () {
+    //const countriesPerPage=9
+    let indFirstCountry  = 0 //Para restar al primer indice de los paises despues de la pag 1
+    let indLastCountry  = 0 //Para restar al ultimo indice de los paises despues de la pag 1
     const nav=true
 
     const dispatch = useDispatch();
@@ -18,21 +21,56 @@ export default function Home () {
     const [orden,setOrden] = useState('')
     const [ordenx,setOrdenx] = useState('')
     const [currentPage,setCurrentPage] =  useState(1)//Pagina actual
-    const [countriesPerPage,setcountriesPerPage ]  = useState(10)//paises por pagina
-    const indexOfLastCountryPage = currentPage * countriesPerPage //10
-                                    //1             10
+    const [countriesPerPage ]  = useState(9)//paises por pagina
+
+    //Este if es para mostrar 9 en la primer página, si no es la primera va a valer 0, entonces va a mostrar 10
+    //Este if es para restar y sumar en los indices para el slice para ir manteniendo las paginas y que en la
+    //primera muestre 9 y de ahi en adelante muestre 10.
+    /*
+    Paginas               1     2      3      4     5
+    indexOfFirstCountry   0     9      1     27    36
+    indexOfLastCountry    9     17     27     36    45
+    Como el slice saca uno menos del segundo argumento por eso el final de uno es el inicio del otro
+    La tabla para obtener 9 en el primero y 10 a partir de la segunda deberia ser
+    Paginas               1     2      3      4     5
+    indexOfFirstCountry   0     9      18     27    36
+    indexOfLastCountry    8     17     26     35    44
+    Como a partir de la segunda pagina tienen que ser 10 países por página, los indices deberian ser
+    Paginas               1     2      3      4     5
+    indexOfFirstCountry   0     9      19     29    39
+    indexOfLastCountry    8     18     28     38    48
+    Si se saca la diferencia entre las do ultimas tablas
+    Paginas                  1     2      3      4     5
+    difindexOfFirstCountry   0     0      1      2     3
+    difindexOfLastCountry    0     1      2      3     4
+    Sacando la serie a partir de la pagina 2 al indexOfFirstCountry hay que sumarle el numero de la pagina actual - 2 
+    (indFirstCountry =currentPage - 2;)
+    Sacando la serie a partir de la pagina 2 al difindexOfLastCountry hay que sumarle el numero de la pagina actual - 1 
+    (indLastCountry = currentPage - 1;)
+    */
+
+    if (currentPage === 1) {
+        indFirstCountry  = 0;
+        indLastCountry = 0;
+      } else {
+        indFirstCountry = currentPage - 2;
+        indLastCountry = currentPage - 1;
+      }
+      console.log("first" ,indFirstCountry)
+      console.log('last' ,indLastCountry)
+
+    const indexOfLastCountryPage = currentPage * countriesPerPage //9
+                                    //1             9
     const indexOfFirstCountryPage =  indexOfLastCountryPage - countriesPerPage //0       
-                                       //10                         10
-    const currentCountries = allCountries.slice(indexOfFirstCountryPage,indexOfLastCountryPage)
+                                       //9                         9
+    //const currentCountries = allCountries.slice(indexOfFirstCountryPage,indexOfLastCountryPage)
+    const currentCountries = allCountries.slice(indexOfFirstCountryPage + indFirstCountry,
+                                                indexOfLastCountryPage + indLastCountry)
 
     //console.log("pagina" , currentPage)
     //console.log("array" , currentCountries)
 
-    // if (setCurrentPage === 1) {
-    //     setcountriesPerPage(9)
-    // }else{
-    //     setcountriesPerPage(10)
-    // }
+  
     useEffect (() =>{
         dispatch(getCountries());
       },[dispatch])

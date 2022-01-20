@@ -18,13 +18,13 @@ const countryNotOk = {
 const activityOk = {
   name: "pelotapaleta",
   difficulty: "1", 
-  duration: "2 hs", 
+  duration: "2", 
   season: "Spring"
 }
 
 const activityNotOk = {
   difficulty: "1", 
-  duration: "2 hs", 
+  duration: "2", 
 }
 
 describe('MODELS:', () => {
