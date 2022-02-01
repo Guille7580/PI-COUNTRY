@@ -12,8 +12,8 @@ export default function Cards ({currentCountries}) {
           
                 {currentCountries?.map( el => 
                         <div key={el.id}>
-                            <Link to={'/detalles/'+ el.id} >
-                                <Card id={el.id} name={el.name} flagimg={el.flagimg } region={el.region} />
+                            <Link to={'/detalles/'+ el.id}  >
+                                <Card id={el.id} name={el.name} flagimg={el.flagimg  } region={el.region} />
                             </Link>
                         </div>
                 )}

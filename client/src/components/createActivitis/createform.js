@@ -1,7 +1,7 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import { useSelector , useDispatch} from 'react-redux';
-import {useNavigate,Link } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import {postCharacter,getCountries} from '../../actions/index'
 import Nav from '../Nav/Nav'
 
@@ -28,7 +28,7 @@ function validate (activity) {
 }    
 
 export default function Createform () {
-    var x = x + 1
+    
     const dispatch = useDispatch()
     const history = useNavigate()
     const CountriesAll = useSelector ((state)=>state.countries)

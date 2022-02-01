@@ -56,8 +56,8 @@ export default function Home () {
         indFirstCountry = currentPage - 2;
         indLastCountry = currentPage - 1;
       }
-      console.log("first" ,indFirstCountry)
-      console.log('last' ,indLastCountry)
+      //console.log("first" ,indFirstCountry)
+     // console.log('last' ,indLastCountry)
 
     const indexOfLastCountryPage = currentPage * countriesPerPage //9
                                     //1             9

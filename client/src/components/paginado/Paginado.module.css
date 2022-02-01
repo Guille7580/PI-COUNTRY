@@ -13,7 +13,7 @@
 
 .crumbss {
   text-align: center;
-   
+  /* display: flex;  */
   margin: 20px 5px;
   font-size: 20px;
   width: 32px;
@@ -26,4 +26,10 @@
   color: white;
   background-color: rgb(18, 42, 41);
 }
+
+/* @media (max-width: 768px) {
+  .crumbs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} */
 

@@ -7,7 +7,7 @@ import Nav from '../Nav/Nav'
 //import style from '../detallesPais/detalle.module.css'
 
 export default function Detalles (props) {
-    console.log(props)
+    //console.log(props)
     const {id} = useParams();
     const dispatch = useDispatch()
     
@@ -17,9 +17,9 @@ export default function Detalles (props) {
     },[dispatch])
 
     const myCountry = useSelector ((state) => state.countryDetail)
-
     
-    console.log(myCountry)
+    
+    //console.log(myCountry)
 
     return(
         <div>
@@ -40,7 +40,7 @@ export default function Detalles (props) {
                    <h3>Poblacion: {myCountry.population} Habitantes</h3> 
                    <div>
                        <h2>Actividades</h2>
-                       <h3>{myCountry.activities?.map (el => <div> Id  {el.id}   {el.name}  Dificultad: {el.difficulty}  Duracion: {el.duration} hs Temporada: {el.season}</div>)}</h3>
+                       <h3>{myCountry.activities?.map (el => <div key={el.id}>  {el.id}   {el.name}  Dificultad: {el.difficulty}  Duracion: {el.duration} hs Temporada: {el.season}  </div>)}</h3>
                    </div>
                    {/* {currentCountries?.map( el => 
                         <div key={el.id}>
