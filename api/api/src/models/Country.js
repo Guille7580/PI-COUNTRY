@@ -40,21 +40,5 @@ module.exports = (sequelize) => {
     }
 
 
-    
-
   },{timestamps:false});
 };
-
-
-/*
-
-ID (Código de 3 letras) *
-Nombre *
-Imagen de la bandera *
-Continente *
-Capital *
-Subregión
-Área
-Población
-
-*/

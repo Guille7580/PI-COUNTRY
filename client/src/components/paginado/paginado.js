@@ -8,7 +8,7 @@ export default function Paginado ({countriesPerPage,allCountries,paginado}){
     //la cuenta esa nos va a dar la cantidad de páginas a partir de la segunda inclusive. Y luego le sumo 1
     //por la primer página.
     
-    for (let i = 1; i <= Math.ceil((allCountries - 9)/(countriesPerPage + 1)) + 1  ; i++) {
+    for (let i = 1; i <= Math.ceil((allCountries - 9)/(countriesPerPage + 1))   ; i++) {
         pageNumbers.push(i )    
     }
      //console.log(pageNumbers)
