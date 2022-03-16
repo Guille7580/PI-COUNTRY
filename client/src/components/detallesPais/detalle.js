@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams} from 'react-router-dom';
 import { useDispatch , useSelector } from "react-redux";
-import { getDetail} from '../../actions/index'
+import { getDetail , get_Deletedetail} from '../../actions/index'
 import { useEffect } from "react";
 import Nav from '../Nav/Nav'
 //import style from '../detallesPais/detalle.module.css'
@@ -14,7 +14,10 @@ export default function Detalles (props) {
     
     useEffect(() => {
         dispatch(getDetail(id))
-    },[dispatch])
+          return ()=>{
+              dispatch(get_Deletedetail())
+          }
+    },[dispatch,id])
 
     const myCountry = useSelector ((state) => state.countryDetail)
     

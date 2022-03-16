@@ -6,7 +6,8 @@ import {
     ORD_BYNAME,
     ORD_CONTINENT,
     SHOW_ACTIV,
-    ORD_BYACTIVITY
+    ORD_BYACTIVITY,
+    GET_DELETE_DETALLE
   } from "../actions/actionNames";
 
   
@@ -105,6 +106,11 @@ function rootReducer  (state = initialState, action) {
             ...state,
             countries:  sortedad
             } 
+      case GET_DELETE_DETALLE :
+            return{
+              ...state,
+              countryDetail:{}
+            }       
          
       default:
         return state;

@@ -7,7 +7,8 @@ import {
     ORD_BYNAME,
     ORD_CONTINENT,
     SHOW_ACTIV,
-    ORD_BYACTIVITY
+    ORD_BYACTIVITY,
+    GET_DELETE_DETALLE
   } from "./actionNames";
 
 export function getCountries(){
@@ -99,6 +100,13 @@ export const order_ByActivity = (payload) => {
   return {
     type: ORD_BYACTIVITY,
     payload,
+  };
+}
+
+export const get_Deletedetail = () => {
+  return {
+    type: GET_DELETE_DETALLE,
+    
   };
 }
 

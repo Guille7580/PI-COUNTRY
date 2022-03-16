@@ -5,4 +5,5 @@ export const ORD_BYPOPUL = " ORD_BYPOPUL";
 export const ORD_BYNAME = "ORD_BYNAME";
 export const ORD_CONTINENT = "ORD_CONTINENT";
 export const SHOW_ACTIV = "SHOW_ACTIV";
-export const ORD_BYACTIVITY = "ORD_BYACTIVITY"
+export const ORD_BYACTIVITY = "ORD_BYACTIVITY";
+export const GET_DELETE_DETALLE= "GET_DELETE_DETALLE";
